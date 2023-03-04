@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public abstract class CharacterAnimator : MonoBehaviour
 {
     [SerializeField] private int _health;
 

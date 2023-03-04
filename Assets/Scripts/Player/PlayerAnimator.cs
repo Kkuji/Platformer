@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAnimator : Character
+public class PlayerAnimator : CharacterAnimator
 {
     [SerializeField] private float _attackFrequency;
     [SerializeField] private float _attackRange;

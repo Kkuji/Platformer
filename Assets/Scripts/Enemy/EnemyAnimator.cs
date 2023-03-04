@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAnimator : Character
+public class EnemyAnimator : CharacterAnimator
 {
     [SerializeField] private Transform _attackPoint;
     [SerializeField] private LayerMask _enemyLayer;
@@ -11,6 +11,7 @@ public class EnemyAnimator : Character
     {
         animatorChar.SetTrigger("Attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
+
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.GetComponent<PlayerAnimator>().TakeDamage(_attackDamage);
