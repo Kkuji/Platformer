@@ -1,23 +1,29 @@
 using UnityEngine;
 
-public abstract class CharacterAnimator : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public abstract class BaseAnimator : MonoBehaviour
 {
     [SerializeField] private int _health;
 
     private int _currentHealth;
 
-    protected Animator animatorChar;
+    [SerializeField] protected Transform _attackPoint;
+    [SerializeField] protected LayerMask _enemyLayer;
+    [SerializeField] protected int _attackDamage;
+    [SerializeField] protected float _attackRange;
+
+    protected Animator _animatorChar;
 
     private void Awake()
     {
         _currentHealth = _health;
-        animatorChar = GetComponent<Animator>();
+        _animatorChar = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        animatorChar.SetTrigger("Damaged");
+        _animatorChar.SetTrigger("Damaged");
 
         if (_currentHealth < 1)
         {
@@ -27,13 +33,11 @@ public abstract class CharacterAnimator : MonoBehaviour
 
     private void Die()
     {
-        animatorChar.SetBool("IsDead", true);
+        _animatorChar.SetBool("IsDead", true);
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<Collider2D>().enabled = false;
         enabled = false;
     }
 
-    public virtual void Attack()
-    {
-    }
+    public abstract void Attack();
 }

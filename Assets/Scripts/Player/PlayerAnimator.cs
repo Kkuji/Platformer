@@ -1,12 +1,9 @@
 using UnityEngine;
 
-public class PlayerAnimator : CharacterAnimator
+[RequireComponent(typeof(PlayerMover))]
+public class PlayerAnimator : BaseAnimator
 {
     [SerializeField] private float _attackFrequency;
-    [SerializeField] private float _attackRange;
-    [SerializeField] private int _attackDamage;
-    [SerializeField] private Transform _attackPoint;
-    [SerializeField] private LayerMask _enemyLayer;
 
     private PlayerMover _playerMover;
     private float _lastAttackTime;
@@ -40,16 +37,16 @@ public class PlayerAnimator : CharacterAnimator
 
     private void Run()
     {
-        animatorChar.SetBool("Jump", false);
+        _animatorChar.SetBool("Jump", false);
         Vector2 velocity = _playerMover.Velocity;
 
         if (velocity.x == 0)
         {
-            animatorChar.SetBool("Run", false);
+            _animatorChar.SetBool("Run", false);
         }
         else
         {
-            animatorChar.SetBool("Run", true);
+            _animatorChar.SetBool("Run", true);
             Flip(velocity);
         }
     }
@@ -58,13 +55,13 @@ public class PlayerAnimator : CharacterAnimator
     {
         Vector2 velocity = _playerMover.Velocity;
 
-        animatorChar.SetBool("Jump", true);
+        _animatorChar.SetBool("Jump", true);
         Flip(velocity);
     }
 
     public override void Attack()
     {
-        animatorChar.SetTrigger("Attack");
+        _animatorChar.SetTrigger("Attack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
         foreach (Collider2D enemy in hitEnemies)

@@ -1,15 +1,10 @@
 using UnityEngine;
 
-public class EnemyAnimator : CharacterAnimator
+public class EnemyAnimator : BaseAnimator
 {
-    [SerializeField] private Transform _attackPoint;
-    [SerializeField] private LayerMask _enemyLayer;
-    [SerializeField] private float _attackRange;
-    [SerializeField] private int _attackDamage;
-
     public override void Attack()
     {
-        animatorChar.SetTrigger("Attack");
+        _animatorChar.SetTrigger("Attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
