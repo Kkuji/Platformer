@@ -12,18 +12,18 @@ public abstract class BaseAnimator : MonoBehaviour
     [SerializeField] protected int _attackDamage;
     [SerializeField] protected float _attackRange;
 
-    protected Animator _animatorChar;
+    protected Animator animatorChar;
 
     private void Awake()
     {
         _currentHealth = _health;
-        _animatorChar = GetComponent<Animator>();
+        animatorChar = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        _animatorChar.SetTrigger("Damaged");
+        animatorChar.SetTrigger("Damaged");
 
         if (_currentHealth < 1)
         {
@@ -33,7 +33,7 @@ public abstract class BaseAnimator : MonoBehaviour
 
     private void Die()
     {
-        _animatorChar.SetBool("IsDead", true);
+        animatorChar.SetBool("IsDead", true);
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<Collider2D>().enabled = false;
         enabled = false;

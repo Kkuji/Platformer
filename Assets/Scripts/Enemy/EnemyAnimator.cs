@@ -4,7 +4,7 @@ public class EnemyAnimator : BaseAnimator
 {
     public override void Attack()
     {
-        _animatorChar.SetTrigger("Attack");
+        animatorChar.SetTrigger("Attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)

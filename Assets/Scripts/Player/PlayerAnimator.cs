@@ -37,16 +37,16 @@ public class PlayerAnimator : BaseAnimator
 
     private void Run()
     {
-        _animatorChar.SetBool("Jump", false);
+        animatorChar.SetBool("Jump", false);
         Vector2 velocity = _playerMover.Velocity;
 
         if (velocity.x == 0)
         {
-            _animatorChar.SetBool("Run", false);
+            animatorChar.SetBool("Run", false);
         }
         else
         {
-            _animatorChar.SetBool("Run", true);
+            animatorChar.SetBool("Run", true);
             Flip(velocity);
         }
     }
@@ -55,13 +55,13 @@ public class PlayerAnimator : BaseAnimator
     {
         Vector2 velocity = _playerMover.Velocity;
 
-        _animatorChar.SetBool("Jump", true);
+        animatorChar.SetBool("Jump", true);
         Flip(velocity);
     }
 
     public override void Attack()
     {
-        _animatorChar.SetTrigger("Attack");
+        animatorChar.SetTrigger("Attack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
