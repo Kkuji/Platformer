@@ -7,10 +7,10 @@ public abstract class BaseAnimator : MonoBehaviour
 
     private int _currentHealth;
 
-    [SerializeField] protected Transform _attackPoint;
-    [SerializeField] protected LayerMask _enemyLayer;
-    [SerializeField] protected int _attackDamage;
-    [SerializeField] protected float _attackRange;
+    [SerializeField] protected Transform attackPoint;
+    [SerializeField] protected LayerMask enemyLayer;
+    [SerializeField] protected int attackDamage;
+    [SerializeField] protected float attackRange;
 
     protected Animator animatorChar;
 

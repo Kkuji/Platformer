@@ -63,10 +63,10 @@ public class PlayerAnimator : BaseAnimator
     {
         animatorChar.SetTrigger("Attack");
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyAnimator>().TakeDamage(_attackDamage);
+            enemy.GetComponent<EnemyAnimator>().TakeDamage(attackDamage);
         }
     }
 
